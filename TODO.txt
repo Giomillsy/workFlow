@@ -1,1 +1,2 @@
 - Before exit save the objects
+- Navigate the steps
