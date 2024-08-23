@@ -1,7 +1,8 @@
 import pickle
 import os
+from classes.Task import Task
 
-class TaskHandler:
+class TaskHandler():
     def __init__(self):
         
         self.storagefn = 'taskStorage.pkl' # Filename of storage
@@ -29,7 +30,7 @@ class TaskHandler:
             for task in self.tasks:
                 pickle.dump(task,f)
     
-    def openStorageFile(fn,openType):
+    def openStorageFile(self,fn,openType):
         """
         Opens a file.
 
@@ -52,3 +53,37 @@ class TaskHandler:
                 break
         
         return f
+    
+    def viewTasks(self):
+    
+
+        for i in range(len(self.tasks)):
+            print(f'{i+1}) {self.tasks[i].taskType} - {self.tasks[i].description}')
+
+    def startNewTask(self):
+        print("-----------")
+        print("Select one of the below to create it as a task")
+        print("1: FMA Update")
+        print("2: Exit back to main menu")
+        print("--------------")
+
+        choice = self.getChoice(2)
+        if choice != 2:
+            if choice == 1:
+                taskType = "FMA Update"
+
+            
+            newTask = Task(taskType)
+            self.tasks.append(newTask)
+    
+    def getChoice(self,maxChoice):
+        #Error catching
+        try:
+            choice = int(input("Please enter an option:"))
+        except ValueError:
+            print("You did not enter a number. Can you try again please")
+
+        if choice not in range(1,maxChoice+1):
+            print("You did not enter a valid number. Can you try again please")
+
+        return choice      

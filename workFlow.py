@@ -1,55 +1,7 @@
-import classes.TaskHandler as TaskHandler
-import classes.Task as Task
-import classes.Step as Step
+from classes.TaskHandler import TaskHandler
 import os
 
-def startNewTask(handler):
-    print("-----------")
-    print("Select one of the below to create it as a task")
-    print("1: FMA Update")
-    print("2: Exit back to main menu")
-    print("--------------")
 
-    choice = getChoice(2)
-    if choice != 2:
-        if choice == 1:
-            taskType = "FMA Update"
-
-        
-        newTask = Task(taskType)
-        handler.tasks.append(newTask)
-
-def openStorageFile(fn,openType):
-    """
-    Opens a file.
-
-    fn(str) -> Target file to open 
-    openType(str) - > type of open to go in open function
-    
-    """
-    error = False
-    while True:
-            try:
-                if not error:
-                    f = open(f'{os.getcwd()}\\{fn}',openType)
-                elif error:
-                    f = open(f'{path}',openType) 
-            except FileNotFoundError:
-                error = True
-                print("Could not find the storage file")
-                path = input("Please enter the file path to find storage file:")
-            
-            break
-    
-    return f
-
-def viewTasks(handler):
-    
-
-    for i in range(len(handler.tasks)):
-        print(f'{i+1}) {handler.tasks[i].taskType} - {handler.tasks[i].description}')
-
-    
 
 def main():
     #main function
@@ -66,10 +18,10 @@ def main():
             handler.dumpAll()
             exit()
         elif choice == 1:
-            startNewTask(handler)
+            handler.startNewTask()
         
         elif choice == 2:
-            viewTasks(handler)
+            handler.viewTasks()
 
 def getChoice(maxChoice):
     #Error catching

@@ -1,4 +1,4 @@
-import Step
+from classes.Step import Step
 
 class Task:
     def __init__(self,taskType):
@@ -18,7 +18,7 @@ class Task:
     def navigateWf(self):
         print("The current work flow step is:",self.steps[self.spos].stepName)
 
-    def loadTaskSteps(taskType):
+    def loadTaskSteps(self,taskType):
         return [Step("Update FMA Schedule",[1]),
                 Step("Create ammendment letter",[1]),
                 Step("Review FMA",[-2,1]),
