@@ -2,6 +2,35 @@
 import pickle
 import os
 
+class TaskHandler:
+    def __init__(self):
+        
+        self.storagefn = 'taskStorage.pkl' # Filename of storage
+
+        self.tasks = []
+        f = openStorageFile(self.storagefn,"rb")
+        with f:
+            while True:
+                try:
+                    self.tasks.append(pickle.load(f))
+                except:
+                    #No more objects in file
+                    break
+
+
+    def dumpAll(self):
+        #Saves all objects in pickle file
+        f = openStorageFile(self.storagefn,"wb")
+        with f:
+            #Deletes all contents in file
+            pass
+        
+        f = openStorageFile(self.storagefn,"wb")
+        with f:
+            for task in self.tasks:
+                pickle.dump(task,f)
+       
+   
 
 class Task:
     def __init__(self,taskType):
@@ -9,6 +38,7 @@ class Task:
         self.steps = loadTaskSteps(self.taskType)
         self.spos = 0
         self.getNextSteps()
+        self.description = input("Please write a short description to dsiplay for furture users:")
 
     def getNextSteps(self):
         #Gets the next possible steps in the work flow
@@ -39,7 +69,7 @@ def loadTaskSteps(taskType):
             ]
 
 
-def startNewTask():
+def startNewTask(handler):
     print("-----------")
     print("Select one of the below to create it as a task")
     print("1: FMA Update")
@@ -47,31 +77,67 @@ def startNewTask():
     print("--------------")
 
     choice = getChoice(2)
-    if choice ==1:
-        newTask = Task("FMA Update")
-        wd = os.getcwd()
-        with open(f'{wd}/workFlow/taskStorage.pkl',"wb") as f:
-            pickle.dump(newTask,f)
-        print("Created task")
+    if choice != 2:
+        if choice == 1:
+            taskType = "FMA Update"
 
+        
+        newTask = Task(taskType)
+        handler.tasks.append(newTask)
+
+def openStorageFile(fn,openType):
+    """
+    Opens a file.
+
+    fn(str) -> Target file to open 
+    openType(str) - > type of open to go in open function
+    
+    """
+    error = False
+    while True:
+            try:
+                if not error:
+                    f = open(f'{os.getcwd()}\\{fn}',openType)
+                elif error:
+                    f = open(f'{path}',openType) 
+            except FileNotFoundError:
+                error = True
+                print("Could not find the storage file")
+                path = input("Please enter the file path to find storage file:")
+            
+            break
+    
+    return f
+
+def viewTasks(handler):
+    
+
+    for i in range(len(handler.tasks)):
+        print(f'{i+1}) {handler.tasks[i].taskType} - {handler.tasks[i].description}')
+
+    
 
 def main():
     #main function
     print("Code Started")
+    handler = TaskHandler()
     while True:
-        #Main loop1
+        #Main loop
 
         #Main menu
         choice = menu()
         if choice == 3:
             #Write code here for saving the existing objects
             print("Closing the code")
+            handler.dumpAll()
             exit()
         elif choice == 1:
-            startNewTask()
+            startNewTask(handler)
+        
+        elif choice == 2:
+            viewTasks(handler)
 
 def getChoice(maxChoice):
-    
     #Error catching
     try:
         choice = int(input("Please enter an option:"))
@@ -94,4 +160,5 @@ def menu():
         
 
 if __name__ == "__main__":
+    os.chdir(r"C:\Users\millso\OneDrive - TPT Retirement Solutions\Desktop\CodeQuick\Dev\workFlow")
     main()

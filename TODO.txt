@@ -1,4 +1,11 @@
-- Before exit save the objects
-- Navigate the steps
--Make it so only one user at a time
-- Try except on importing libaries. With instructions on how to install
+Urgent: 
+    Navigate the steps
+    Fix file path for when on F drive. Currently setting cd to my directory
+Useful:
+    Dates on when a task was started. Also it's due date
+    Make it so only one user at a time
+    Try except on importing libaries. With instructions on how to install
+    steps have relevant procedures saved. Which can be opened
+
+desriable:
+    Ability for them to create the steps for a task
