@@ -1,73 +1,7 @@
-#Imports
-import pickle
+import classes.TaskHandler as TaskHandler
+import classes.Task as Task
+import classes.Step as Step
 import os
-
-class TaskHandler:
-    def __init__(self):
-        
-        self.storagefn = 'taskStorage.pkl' # Filename of storage
-
-        self.tasks = []
-        f = openStorageFile(self.storagefn,"rb")
-        with f:
-            while True:
-                try:
-                    self.tasks.append(pickle.load(f))
-                except:
-                    #No more objects in file
-                    break
-
-
-    def dumpAll(self):
-        #Saves all objects in pickle file
-        f = openStorageFile(self.storagefn,"wb")
-        with f:
-            #Deletes all contents in file
-            pass
-        
-        f = openStorageFile(self.storagefn,"wb")
-        with f:
-            for task in self.tasks:
-                pickle.dump(task,f)
-       
-   
-
-class Task:
-    def __init__(self,taskType):
-        self.taskType = taskType
-        self.steps = loadTaskSteps(self.taskType)
-        self.spos = 0
-        self.getNextSteps()
-        self.description = input("Please write a short description to dsiplay for furture users:")
-
-    def getNextSteps(self):
-        #Gets the next possible steps in the work flow
-    
-        self.nextSteps = []
-        for rel in self.steps[self.spos].nextStepsRel:
-            self.nextSteps.append(self.steps[self.spos+rel])
-
-    def navigateWf(self):
-        print("The current work flow step is:",self.steps[self.spos].stepName)    
-
-
-class Step:
-    def __init__(self,stepName,nextStepsRel = []):
-        self.stepName = stepName
-        self.nextStepsRel = nextStepsRel
-
-
-
-
-def loadTaskSteps(taskType):
-    return [Step("Update FMA Schedule",[1]),
-            Step("Create ammendment letter",[1]),
-            Step("Review FMA",[-2,1]),
-            Step("Review Ammendment Letter",[-2,1]),
-            Step("Send FMA documents to Leeds",[1]),
-            Step("Save documents")
-            ]
-
 
 def startNewTask(handler):
     print("-----------")
