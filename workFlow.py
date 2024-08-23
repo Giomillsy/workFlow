@@ -1,5 +1,6 @@
 #Imports
 import pickle
+import os
 
 
 class Task:
@@ -48,7 +49,8 @@ def startNewTask():
     choice = getChoice(2)
     if choice ==1:
         newTask = Task("FMA Update")
-        with open("taskStorage.txt","w") as f:
+        wd = os.getcwd()
+        with open(f'{wd}/workFlow/taskStorage.pkl',"wb") as f:
             pickle.dump(newTask,f)
         print("Created task")
 
@@ -57,7 +59,7 @@ def main():
     #main function
     print("Code Started")
     while True:
-        #Main loop
+        #Main loop1
 
         #Main menu
         choice = menu()
