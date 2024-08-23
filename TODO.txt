@@ -1,2 +1,4 @@
 - Before exit save the objects
 - Navigate the steps
+-Make it so only one user at a time
+- Try except on importing libaries. With instructions on how to install
