@@ -14,7 +14,7 @@ class Task:
     
         self.nextSteps = []
         for rel in self.steps[self.spos].nextStepsRel:
-            self.nextSteps.append(self.steps[self.pos+rel])
+            self.nextSteps.append(self.steps[self.spos+rel])
 
     def navigateWf(self):
         print("The current work flow step is:",self.steps[self.spos].stepName)    
