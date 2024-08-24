@@ -13,12 +13,7 @@ def main():
 
         #Main menu
         choice = menu(handler)
-        if choice == 3:
-            #Write code here for saving the existing objects
-            print("Closing the code")
-            handler.dumpAll()
-            exit()
-        elif choice == 1:
+        if choice == 1:
             handler.startNewTask()
         
         elif choice == 2:
@@ -38,7 +33,7 @@ def menu(handler):
     print("1: Start new task")
     print("2: View tasks")
     print("3: Select a task")
-    print("3: Exit the code")
+    print("4: Exit the code")
     print("----------------")
 
     return handler.getChoice(4)
