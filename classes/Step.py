@@ -1,4 +1,4 @@
 class Step:
-    def __init__(self,stepName,nextStepsRel = []):
+    def __init__(self,stepName,relSpos = []):
         self.stepName = stepName
-        self.nextStepsRel = nextStepsRel
+        self.relSpos = relSpos

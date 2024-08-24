@@ -56,7 +56,6 @@ class TaskHandler():
     
     def viewTasks(self):
     
-
         for i in range(len(self.tasks)):
             print(f'{i+1}: {self.tasks[i].taskType} - {self.tasks[i].description}')
 
@@ -66,7 +65,13 @@ class TaskHandler():
         self.viewTasks()
         print("-------------")
         choice = self.getChoice(len(self.tasks))
-        self.workOnTask(self.tasks[choice-1])
+        task = self.workOnTask(self.tasks[choice-1])
+
+        if task == "Complete":
+            del self.tasks[choice-1]
+
+        else:
+            self.tasks[choice-1] = task
 
     def workOnTask(self,task):
         #Allow the user to work on a task until they're finished
@@ -80,27 +85,28 @@ class TaskHandler():
             print("----------------")
             choice = self.getChoice(3)
             if choice == 1:
-                spos = self.selectNextStep(self,task.nextSteps)
-                if spos is not None:
-                    task.changeStep(spos)      
+                relSpos = self.selectNextStep(task)
+                if relSpos is not None:
+                    task.changeStep(relSpos)      
                     if task.nextSteps == []:
                         print("Task complete!")
                         return "Complete"
             elif choice == 2:
                 pass
             elif choice ==3:
-                break
-    def selectNextStep(self,nextSteps):
+                return task
+        
+    def selectNextStep(self,task):
         print("Select the next step from below")
-        for i in range(len(nextSteps)):
-            print(f"{i+1}: {nextSteps[i].stepName}")
+        for i in range(len(task.nextSteps)):
+            print(f"{i+1}: {task.steps[task.spos+task.nextSteps[i]].stepName}")
         print(f"{i+2}: Cancel finishing the step")
         print("----------------")
         choice = self.getChoice(i+2)
         if choice == i+2:
             return None
         else:
-            return (choice-1)
+            return (task.nextSteps[choice-1])
 
     def startNewTask(self):
         print("-----------")

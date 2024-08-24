@@ -8,4 +8,5 @@ Useful:
     steps have relevant procedures saved. Which can be opened
 
 desriable:
+    When no tasks exist. You can't select one
     Ability for them to create the steps for a task

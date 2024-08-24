@@ -12,11 +12,11 @@ class Task:
         #Gets the next possible steps in the work flow
     
         self.nextSteps = []
-        for rel in self.steps[self.spos].nextStepsRel:
-            self.nextSteps.append(self.steps[self.spos+rel])
+        for rel in self.steps[self.spos].relSpos:
+            self.nextSteps.append(rel)
     
-    def changeStep(self,spos):
-        self.spos = spos
+    def changeStep(self,relSpos):
+        self.spos = self.spos + relSpos
         self.getNextSteps()
         
     
