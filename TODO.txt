@@ -1,7 +1,5 @@
 Urgent: 
-    Mark current step as complete
     Add procedures to steps
-    Navigate the steps
     Fix file path for when on F drive. Currently setting cd to my directory
 Useful:
     Dates on when a task was started. Also it's due date
