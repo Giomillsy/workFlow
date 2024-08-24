@@ -11,7 +11,7 @@ def main():
         #Main loop
 
         #Main menu
-        choice = menu()
+        choice = menu(handler)
         if choice == 3:
             #Write code here for saving the existing objects
             print("Closing the code")
@@ -23,26 +23,15 @@ def main():
         elif choice == 2:
             handler.viewTasks()
 
-def getChoice(maxChoice):
-    #Error catching
-    try:
-        choice = int(input("Please enter an option:"))
-    except ValueError:
-        print("You did not enter a number. Can you try again please")
 
-    if choice not in range(1,maxChoice+1):
-        print("You did not enter a valid number. Can you try again please")
-
-    return choice      
-
-def menu():
+def menu(handler):
     print("----------------")
     print("1: Start new task")
     print("2: View tasks")
     print("3: Exit the code")
     print("----------------")
 
-    return getChoice(3)
+    return handler.getChoice(3)
         
 
 if __name__ == "__main__":
