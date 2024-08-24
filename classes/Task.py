@@ -1,5 +1,5 @@
 from classes.Step import Step
-
+import os
 class Task:
     def __init__(self,taskType):
         self.taskType = taskType
@@ -18,17 +18,30 @@ class Task:
     def changeStep(self,spos):
         self.spos = spos
         self.getNextSteps()
-        
+
+    def showProcedure(self):
+        os.startfile(self.steps[self.spos].procedureLoc)
+        print("Opened file")
     
     def getCurrentStep(self):
         return self.steps[self.spos].stepName
 
 
     def loadTaskSteps(self,taskType):
-        return [Step("Update FMA Schedule",[1]),
-                Step("Create ammendment letter",[1]),
-                Step("Review FMA",[-2,1]),
-                Step("Review Ammendment Letter",[-2,1]),
-                Step("Send FMA documents to Leeds",[1]),
-                Step("Save documents")
-                ]
+        #Load the taskType
+        if taskType == "FMA Update":
+            return [Step("Update FMA Schedule",[1]),
+                    Step("Create ammendment letter",[1]),
+                    Step("Review FMA",[-2,1]),
+                    Step("Review Ammendment Letter",[-2,1]),
+                    Step("Send FMA documents to Leeds",[1]),
+                    Step("Save documents")]
+        
+        elif taskType == "GEF":
+            return [
+                Step("GEF at PreOk on blotter",[1],),
+                Step("Review the GEF",r"F:\0. Investment Documentation\Procedures\1.5 Portfolio Modelling\GEF Rebalance.docx")
+            ]
+        
+        else:
+            print("Dev Error: NO taskType found in loadTaskSteps")

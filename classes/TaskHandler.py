@@ -6,7 +6,10 @@ class TaskHandler():
     def __init__(self):
         
         self.storagefn = 'taskStorage.pkl' # Filename of storage
-
+        self.taskTypes ={
+            1:"FMA Update",
+            2:"GEF"
+        }
         self.tasks = []
         f = self.openStorageFile(self.storagefn,"rb")
         with f:
@@ -92,7 +95,7 @@ class TaskHandler():
                         print("Task complete!")
                         return "Complete"
             elif choice == 2:
-                pass
+                task.showProcedure()
             elif choice ==3:
                 return task
         
@@ -111,11 +114,12 @@ class TaskHandler():
     def startNewTask(self):
         print("-----------")
         print("Select one of the below to create it as a task")
-        print("1: FMA Update")
-        print("2: Exit back to main menu")
+        for i in range(len(self.taskTypes)):
+            print(f"{i+1}: {self.taskTypes[i+1]}")
+        print(f"{i+2}: Exit back to main menu")
         print("--------------")
 
-        choice = self.getChoice(2)
+        choice = self.getChoice(i+2)
         if choice != 2:
             if choice == 1:
                 taskType = "FMA Update"
