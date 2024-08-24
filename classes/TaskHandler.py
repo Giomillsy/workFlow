@@ -66,7 +66,7 @@ class TaskHandler():
         self.viewTasks()
         print("-------------")
         choice = self.getChoice(len(self.tasks))
-        self.tasks[choice-1].workOnTask(self.tasks[choice-1])
+        self.workOnTask(self.tasks[choice-1])
 
     def workOnTask(self,task):
         #Allow the user to work on a task until they're finished
@@ -80,9 +80,9 @@ class TaskHandler():
             print("----------------")
             choice = self.getChoice(3)
             if choice == 1:
-                ...
+                pass
             elif choice == 2:
-                ...
+                pass
             elif choice ==3:
                 break
 
