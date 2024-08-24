@@ -13,10 +13,10 @@ class Task:
     
         self.nextSteps = []
         for rel in self.steps[self.spos].relSpos:
-            self.nextSteps.append(rel)
+            self.nextSteps.append(self.spos+rel)
     
-    def changeStep(self,relSpos):
-        self.spos = self.spos + relSpos
+    def changeStep(self,spos):
+        self.spos = spos
         self.getNextSteps()
         
     

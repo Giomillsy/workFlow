@@ -85,9 +85,9 @@ class TaskHandler():
             print("----------------")
             choice = self.getChoice(3)
             if choice == 1:
-                relSpos = self.selectNextStep(task)
-                if relSpos is not None:
-                    task.changeStep(relSpos)      
+                spos = self.selectNextStep(task)
+                if spos is not None:
+                    task.changeStep(spos)      
                     if task.nextSteps == []:
                         print("Task complete!")
                         return "Complete"
@@ -99,7 +99,7 @@ class TaskHandler():
     def selectNextStep(self,task):
         print("Select the next step from below")
         for i in range(len(task.nextSteps)):
-            print(f"{i+1}: {task.steps[task.spos+task.nextSteps[i]].stepName}")
+            print(f"{i+1}: {task.steps[task.nextSteps[i]].stepName}")
         print(f"{i+2}: Cancel finishing the step")
         print("----------------")
         choice = self.getChoice(i+2)
