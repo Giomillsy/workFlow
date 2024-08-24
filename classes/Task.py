@@ -15,12 +15,14 @@ class Task:
         for rel in self.steps[self.spos].nextStepsRel:
             self.nextSteps.append(self.steps[self.spos+rel])
     
+    def changeStep(self,spos):
+        self.spos = spos
+        self.getNextSteps()
+        
     
-    def showCurrentStep(self):
+    def getCurrentStep(self):
         return self.steps[self.spos].stepName
 
-    def navigateWf(self):
-        print("The current work flow step is:",self.steps[self.spos].stepName)
 
     def loadTaskSteps(self,taskType):
         return [Step("Update FMA Schedule",[1]),

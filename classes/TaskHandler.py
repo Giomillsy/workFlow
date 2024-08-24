@@ -71,21 +71,36 @@ class TaskHandler():
     def workOnTask(self,task):
         #Allow the user to work on a task until they're finished
         while True:
-            print(f"The current step is {task.showCurrentStep()}")
+            print(f"The current step is {task.getCurrentStep()}")
             print("---------------")
             print("Select an option")
-            print("1: Mark current step as complete")
+            print("1: Mark current step as finished")
             print("2: Open procedure for current step")
             print("3: Exit to main menu")
             print("----------------")
             choice = self.getChoice(3)
             if choice == 1:
-                pass
+                spos = self.selectNextStep(self,task.nextSteps)
+                if spos is not None:
+                    task.changeStep(spos)      
+                    if task.nextSteps == []:
+                        print("Task complete!")
+                        return "Complete"
             elif choice == 2:
                 pass
             elif choice ==3:
                 break
-
+    def selectNextStep(self,nextSteps):
+        print("Select the next step from below")
+        for i in range(len(nextSteps)):
+            print(f"{i+1}: {nextSteps[i].stepName}")
+        print(f"{i+2}: Cancel finishing the step")
+        print("----------------")
+        choice = self.getChoice(i+2)
+        if choice == i+2:
+            return None
+        else:
+            return (choice-1)
 
     def startNewTask(self):
         print("-----------")
