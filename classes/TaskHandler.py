@@ -120,12 +120,8 @@ class TaskHandler():
         print("--------------")
 
         choice = self.getChoice(i+2)
-        if choice != 2:
-            if choice == 1:
-                taskType = "FMA Update"
-
-            
-            newTask = Task(taskType)
+        if choice != i+2:
+            newTask = Task(self.taskTypes[i+1])
             self.tasks.append(newTask)
     
     def getChoice(self,maxChoice):

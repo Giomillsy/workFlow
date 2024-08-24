@@ -39,8 +39,8 @@ class Task:
         
         elif taskType == "GEF":
             return [
-                Step("GEF at PreOk on blotter",[1],),
-                Step("Review the GEF",r"F:\0. Investment Documentation\Procedures\1.5 Portfolio Modelling\GEF Rebalance.docx")
+                Step("GEF at PreOk on blotter",[1],procedureLoc=r"F:\0. Investment Documentation\Procedures\1.5 Portfolio Modelling\GEF Rebalance.docx"),
+                Step("Review the GEF",procedureLoc=r"F:\0. Investment Documentation\Procedures\1.5 Portfolio Modelling\GEF Rebalance.docx")
             ]
         
         else:
