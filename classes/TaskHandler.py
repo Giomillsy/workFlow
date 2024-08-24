@@ -58,7 +58,34 @@ class TaskHandler():
     
 
         for i in range(len(self.tasks)):
-            print(f'{i+1}) {self.tasks[i].taskType} - {self.tasks[i].description}')
+            print(f'{i+1}: {self.tasks[i].taskType} - {self.tasks[i].description}')
+
+    def selectTask(self):
+        print("-----------")
+        print("Select one of the below")
+        self.viewTasks()
+        print("-------------")
+        choice = self.getChoice(len(self.tasks))
+        self.tasks[choice-1].workOnTask(self.tasks[choice-1])
+
+    def workOnTask(self,task):
+        #Allow the user to work on a task until they're finished
+        while True:
+            print(f"The current step is {task.showCurrentStep()}")
+            print("---------------")
+            print("Select an option")
+            print("1: Mark current step as complete")
+            print("2: Open procedure for current step")
+            print("3: Exit to main menu")
+            print("----------------")
+            choice = self.getChoice(3)
+            if choice == 1:
+                ...
+            elif choice == 2:
+                ...
+            elif choice ==3:
+                break
+
 
     def startNewTask(self):
         print("-----------")
