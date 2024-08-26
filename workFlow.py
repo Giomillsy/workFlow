@@ -40,5 +40,8 @@ def menu(handler):
         
 
 if __name__ == "__main__":
-    os.chdir(r"C:\Users\millso\OneDrive - TPT Retirement Solutions\Desktop\CodeQuick\Dev\workFlow")
+    try:
+        os.chdir(r"\Users\millso\OneDrive - TPT Retirement Solutions\Desktop\CodeQuick\Dev\workFlow")
+    except FileNotFoundError:
+        os.chdir(r"inv\Team Administration\Workflow")
     main()
