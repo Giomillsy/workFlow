@@ -43,5 +43,5 @@ if __name__ == "__main__":
     try:
         os.chdir(r"\Users\millso\OneDrive - TPT Retirement Solutions\Desktop\CodeQuick\Dev\workFlow")
     except FileNotFoundError:
-        os.chdir(r"inv\Team Administration\Workflow")
+        os.chdir(r"\\srv12r2fs01\inv\Investment Strategy\Process Monitoring")
     main()
