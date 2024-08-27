@@ -121,7 +121,7 @@ class TaskHandler():
 
         choice = self.getChoice(i+2)
         if choice != i+2:
-            newTask = Task(self.taskTypes[i+1])
+            newTask = Task(self.taskTypes[i])
             self.tasks.append(newTask)
     
     def getChoice(self,maxChoice):

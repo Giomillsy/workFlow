@@ -20,8 +20,11 @@ class Task:
         self.getNextSteps()
 
     def showProcedure(self):
-        os.startfile(self.steps[self.spos].procedureLoc)
-        print("Opened file")
+        try:
+            os.startfile(self.steps[self.spos].procedureLoc)
+            print("Opened file")
+        except TypeError:
+            print("Could not open procedure. A procedure has not been assigned")
     
     def getCurrentStep(self):
         return self.steps[self.spos].stepName
